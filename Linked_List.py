@@ -87,7 +87,7 @@ class LinkedList:
         if index < 0 or index >= self.get_length():
             raise Exception ("Index Out Of Range")
         if index==0:
-            print("No previous node located")
+            print("No previous Node located")
             return
 
         count = 0
@@ -98,6 +98,23 @@ class LinkedList:
             count +=1
             itr= itr.next
         
+    def remove_prev(self, index):
+        if index<=0 or index>= self.get_length():
+            raise Exception("Index Out Of Range")
+        if index==1:
+            itr.head=itr.next
+            return
+        count= 0
+        itr= self.head
+        while itr:
+            if count == index-2:
+                if itr.next is not None:
+                    itr.next=itr.next.next
+            itr=itr.next
+            count+=1
+
+        
+
 #This function inserst data at a specified index in the linked list
     def insert_at(self, index, data):
         if index < 0 or index >= self.get_length():
@@ -125,10 +142,11 @@ if __name__ == '__main__':
     link=LinkedList()
 ##    link.insert_at_begining(7)
 ##    link.insert_at_end(100)
-##    link.insert_values_at_end([1,2,3,4,5,6,7,8,9])
-    link.insert_values_at_begining([1,2,3,4,5,6,7,8,9,9,9])
+    link.insert_values_at_end([1,2,3,4,5,6,7,8,9])
+    #link.insert_values_at_begining([1,2,3,4,5,6,7,8,9,9,9])
 ##    link.remove_at(5)
 ##    link.insert_at(5,9000)
-    link.print_prev(2)
+    #link.print_prev(2)
+    link.remove_prev(4)
     link.print()
     print("length: ",link.get_length())
