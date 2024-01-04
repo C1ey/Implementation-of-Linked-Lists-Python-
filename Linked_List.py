@@ -1,4 +1,5 @@
 #Created By Cleon
+#These functions demonstrate the implementation and manipulation of linke lists while keeping order of growth in mind
 
 import math
 
@@ -98,6 +99,7 @@ class LinkedList:
             count +=1
             itr= itr.next
         
+#This function removes data previous to the index specified
     def remove_prev(self, index):
         if index<=0 or index>= self.get_length():
             raise Exception("Index Out Of Range")
@@ -113,7 +115,21 @@ class LinkedList:
             itr=itr.next
             count+=1
 
-        
+#This function inserts data at the previous position to the index specified
+    def insert_prev(self, index, data):
+        if index <0 or index >= self.get_length():
+            raise Exception("Index Out Of Range")
+        if index==0:
+            self.insert_at_begining(data)
+            return
+        count=0
+        itr = self.head
+        while itr:
+            if count == index-1:
+                node=Node(data,itr.next)
+                itr.next=node
+            itr=itr.next
+            count +=1
 
 #This function inserst data at a specified index in the linked list
     def insert_at(self, index, data):
@@ -140,13 +156,14 @@ class LinkedList:
         
 if __name__ == '__main__':
     link=LinkedList()
-##    link.insert_at_begining(7)
-##    link.insert_at_end(100)
+    link.insert_at_begining(7)
+    link.insert_at_end(100)
     link.insert_values_at_end([1,2,3,4,5,6,7,8,9])
-    #link.insert_values_at_begining([1,2,3,4,5,6,7,8,9,9,9])
-##    link.remove_at(5)
-##    link.insert_at(5,9000)
-    #link.print_prev(2)
+    link.insert_values_at_begining([1,2,3,4,5,6,7,8,9,9,9])
+    link.remove_at(5)
+    link.insert_at(5,9000)
+    link.print_prev(2)
     link.remove_prev(4)
+    link.insert_prev(4,"yes")
     link.print()
     print("length: ",link.get_length())
